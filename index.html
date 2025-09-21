@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SportNews - Latest Sports News</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --primary-red: #d40000;
+            --dark-red: #a30000;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .top-navbar .nav-link {
+         color: var(--dark-gray) !important;
+        }
+
+        .top-navbar .nav-link:hover {
+         color: var(--primary-red) !important;
+        }
+
+        /* Centrar logo y darle tamaño uniforme */
+.logo-marca {
+  height: 60px;
+  left: 50%;             /* Lo coloca al centro */
+  transform: translateX(-50%); /* Ajusta al centro real */
+  margin-left: 90px;  
+}
+
+/* Botón Iniciar Sesión */
+.btn-login {
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease;
+}
+
+.btn-login:hover {
+  background-color: #f0f0f0;
+}
+
+/* Botón Suscribirse destacado */
+.btn-subscribe {
+  padding: 6px 14px;
+  border-radius: 20px;
+  background-color: var(--primary-red); /* rojo estilo Marca */
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-subscribe:hover {
+  background-color: var(--dark-red); /* rojo más oscuro */
+  color: #fff;
+}
+
+
+        
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 2rem;
+            color: var(--primary-red) !important;
+        }
+        
+        .top-navbar {
+            background-color: white;
+        }
+
+        /* Botón idioma */
+.dropdown .btn {
+  font-size: 0.9rem;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.dropdown-menu {
+  z-index: 2000; /* más alto que la navbar */
+}
+
+
+
+        
+        .main-navbar {
+            background-color: var(--primary-red);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-toggler {
+            background-color: rgb(255, 255, 255);
+            margin-bottom: 5px;
+            margin-top: 5px;
+        }
+        
+        .nav-link {
+            font-size: 16px;        /* más grande */
+  font-weight: 700;       /* negrita */
+  text-transform: uppercase; /* todo en mayúsculas */
+  padding: 8px 15px;      /* espacio interno para que se vean equilibrados */
+  color: #ffffff !important; /* texto negro, como en Marca */
+        }
+
+        .nav-link2 {
+            color: #343a40;
+            font-size: 16px;        /* tamaño de fuente más pequeño */
+            font-weight: 600;       /* negrita */
+            text-transform: none;   /* sin mayúsculas */
+            padding: 6px 12px;     /* espacio interno reducido */
+        }
+        
+        .nav-link:hover {
+            background-color: black !important;
+        }
+
+        .navbar .form-control {
+  height: 30px;            /* más delgado */
+  padding: 2px 8px;        /* reduce espacio interno */
+  font-size: 14px;         /* texto más compacto */
+}
+
+.navbar .btn {
+  background-color: #f8f9fa;  
+  height: 30px;            /* mismo alto que el input */
+  padding: 2px 10px;       /* ajusta relleno */
+  font-size: 14px;
+  line-height: 1;          /* centra el texto vertical */
+  margin-left: 5px;
+}
+
+.navbar .btn:hover {
+    background-color: #e30613; /* rojo Marca */
+    border-color: #e30613;
+    color: #fff;
+}
+
+        .team-logo {
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            transition: transform 0.3s;
+            margin-top: 10px;
+       
+        }
+        
+        .team-logo:hover {
+            transform: scale(1.2);
+        }
+        
+        .match-card {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+        }
+        
+        .match-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .match-time {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        
+        .news-card {
+            border: none;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-card img {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .team-logo-nav {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+
+        .team-logo-card {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+        }
+
+        .anuncio1 {
+            width: 600px;
+            height: 100px;
+        }
+
+        .anuncio2 {
+             width: 300px;
+             height: 200px;
+             border-radius: 6px;
+        }
+
+        .fut-anuncio1 {
+            width: 800px;
+            height: 800px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .fut-anunciosmaller {
+            width: 900px;
+            height: 150px;
+            object-fit: fill;
+            border-radius: 6px;
+        }
+
+        .fut-anuncio2 {
+            width: 400px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+
+        
+        .category-badge {
+            background-color: var(--primary-red);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1;
+        }
+        
+        .read-more {
+            color: var(--primary-red);
+            font-weight: 600;
+            text-decoration: none;
+        }
+        
+        .read-more:hover {
+            text-decoration: underline;
+        }
+        
+        footer {
+  background-color: var(--dark-gray);
+  color: white;
+  padding: 40px 0;
+}
+
+footer h6 {
+  color: var(--light-gray);
+  margin-bottom: 15px;
+}
+
+.footer-link {
+  color: #ccc;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.footer-link:hover {
+  color: var(--primary-red);
+  text-decoration: underline;
+}
+
+footer hr {
+  border-color: rgba(255,255,255,0.2);
+}
+
+footer .social-icon {
+  font-size: 1.4rem;
+  margin: 0 10px;
+  color: white;
+  transition: color 0.3s;
+}
+
+footer .social-icon:hover {
+  color: var(--primary-red);
+}
+
+        
+        .social-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: white;
+        }
+        
+        .social-icon:hover {
+            color: var(--primary-red);
+        }
+        
+        @media (max-width: 768px) {
+            .team-logo {
+                width: 30px;
+                height: 30px;
+                margin: 0 5px;
+            }
+            
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+<nav class="navbar navbar-expand-lg top-navbar py-0 d-none d-lg-block">
+  <div class="container d-flex justify-content-between align-items-center">
+    
+    <!-- Ícono izquierdo -->
+    <div class="navbar-nav">
+      <a class="nav-link3 text-white px-2 small" href="#">
+        <img src="imagenes/Captura de pantalla 2025-09-19 184433.png" alt="Instagram" style="height: 30px;">
+      </a>
+    </div>
+    
+    <!-- Logo centrado -->
+    <div class="mx-auto">
+      <img src="imagenes/marca.png" alt="SportNews Logo" class="logo-marca">
+    </div>
+    
+    <!-- Botones derechos -->
+     <div class="dropdown me-2">
+        <button class="btn btn-outline-light dropdown-toggle py-1 px-2 text-dark" type="button" id="dropdownIdioma" data-bs-toggle="dropdown" aria-expanded="false">
+          🇪🇸 ES
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end background-color-white" aria-labelledby="dropdownIdioma">
+          <li><a class="dropdown-item" href="#">ES (España)</a></li>
+          <li><a class="dropdown-item" href="#">EN (Inglés)</a></li>
+          <li><a class="dropdown-item" href="#">FR (Francés)</a></li>
+        </ul>
+      </div>
+    <div class="navbar-nav d-flex">
+      <a class="btn-login" href="#">Inicia Sesión</a>
+      <a class="btn-subscribe ms-2" href="#">Suscribirse</a>
+    </div>
+    
+  </div>
+</nav>
+
+<!-- Main Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light main-navbar sticky-top py-0">
+  <div class="container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      
+      <ul class="navbar-nav me-auto">
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="futbolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Fútbol
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="futbolDropdown">
+            <li><a class="dropdown-item" href="#">LaLiga</a></li>
+            <li><a class="dropdown-item" href="#">Champions</a></li>
+            <li><a class="dropdown-item" href="#">Mundial</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="basketDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Baloncesto
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="basketDropdown">
+            <li><a class="dropdown-item" href="#">NBA</a></li>
+            <li><a class="dropdown-item" href="#">Euroleague</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="motorDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Motor
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="motorDropdown">
+            <li><a class="dropdown-item" href="#">F1</a></li>
+            <li><a class="dropdown-item" href="#">MotoGP</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Polideportivo</a>
+        </li>
+        
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="masDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Más +
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="masDropdown">
+            <li><a class="dropdown-item" href="#">Agenda TV</a></li>
+            <li><a class="dropdown-item" href="#">Última hora</a></li>
+          </ul>
+        </li>
+
+      </ul>
+      
+      <form class="d-flex">
+        <input class="form-control" type="Buscar" placeholder="Busca en Marca.com">
+        <button class="btn btn-outline-danger" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+
+    <!-- Teams Navigation -->
+    <div class="container py-3">
+        <div class="d-flex flex-nowrap overflow-fill justify-content-center">
+            <a href="#" class="team-logo"><img src="imagenes/Alaves.svg" class="img-fluid team-logo-nav" alt="Alavés"></a>
+            <a href="#" class="team-logo"><img src="imagenes/athleticclub-logo.png" class="img-fluid team-logo-nav" alt="Athletic Club"></a>
+            <a href="#" class="team-logo"><img src="imagenes/atleticomadridlogo.jpg" class="img-fluid team-logo-nav" alt="Atlético Madrid"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Barcelona.svg" class="img-fluid team-logo-nav" alt="Barcelona"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Betis.png" class="img-fluid team-logo-nav" alt="Betis"></a>
+            <a href="#" class="team-logo"><img src="imagenes/celtadevigo.png" class="img-fluid team-logo-nav" alt="Celta del Vigo"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Elche_CF_logo.svg.png" class="img-fluid team-logo-nav" alt="Elche"></a>
+            <a href="#" class="team-logo"><img src="imagenes/espanyol-logo-1.png" class="img-fluid team-logo-nav" alt="Espanyol"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Getafe_CF_Logo.png" class="img-fluid team-logo-nav" alt="Juventus"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Girona_FC_Logo.svg.png" class="img-fluid team-logo-nav" alt="Bayern Munich"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Levante_Unión_Deportiva,_S.A.D._logo.png" class="img-fluid team-logo-nav" alt="Levante"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Rcd_mallorca.svg.png" class="img-fluid team-logo-nav" alt="Real Madrid"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Ca_osasuna.png" class="img-fluid team-logo-nav" alt="Osasuna"></a>
+            <a href="#" class="team-logo"><img src="imagenes/oviedologo.png" class="img-fluid team-logo-nav" alt="Real Sociedad"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Rayo_Vallecano_logo.svg.png" class="img-fluid team-logo-nav" alt="Sevilla"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Real_Madrid_CF.svg.png" class="img-fluid team-logo-nav" alt="Valencia"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Real_Sociedad_logo.svg.png" class="img-fluid team-logo-nav" alt="Villarreal"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Sevilla_Fútbol_Club_logo.svg.png" class="img-fluid team-logo-nav" alt="Villarreal"></a>
+            <a href="#" class="team-logo"><img src="imagenes/Valenciacf.svg.png" class="img-fluid team-logo-nav" alt="Villarreal"></a>
+            <a href="#" class="team-logo"><img src="imagenes/villarreal.png" class="img-fluid team-logo-nav" alt="Villarreal"></a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+<div class="container my-1 mt-1">
+    
+    <!-- Featured Match Section -->
+    <div class="row g-3 justify-content-center">
+        <h4 class="fw-bold">Resultados: LaLiga EA Sports</h4>
+        <div class="col-md-6 col-lg-3">
+            <div class="match-card card">
+                <div class="card-body text-center p-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-center">
+                            <img src="imagenes/Girona_FC_Logo.svg.png" class="img-fluid ms-4 team-logo-card" alt="Real Madrid">
+                            <h6 class="mt-1 ms-4 fs-6">Girona</h6>
+                            <p class="fw-bold mb-0 ms-4 fs-5">1</p>
+                        </div>
+                        <div class="mx-2">
+                            <p class="mb-0 fw-bold fs-6">VS</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="imagenes/Levante_Unión_Deportiva,_S.A.D._logo.png" class="img-fluid team-logo-card me-4" alt="Barcelona">
+                            <h6 class="mt-1 fs-6 me-4">Levante</h6>
+                            <p class="fw-bold mb-0 fs-5 me-4">4</p>
+                        </div>
+                    </div>
+                    <p class="text-muted mt-0 small">Finalizado</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="match-card card">
+                <div class="card-body text-center p-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-center">
+                            <img src="imagenes/Real_Madrid_CF.svg.png" class="img-fluid team-logo-card ms-4" alt="Man City">
+                            <h6 class="mt-1 fs-6 ms-4">R. Madrid</h6>
+                            <p class="fw-bold mb-0 fs-5 ms-4">2</p>
+                        </div>
+                        <div class="mx-2">
+                            <p class="mb-0 fw-bold fs-6">VS</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="imagenes/espanyol-logo-1.png" class="img-fluid team-logo-card me-4" alt="Liverpool">
+                            <h6 class="mt-1 fs-6 me-4">Espanyol</h6>
+                            <p class="fw-bold mb-0 fs-5 me-4">0</p>
+                        </div>
+                    </div>
+                    <p class="text-muted mt-0 small">Finalizado</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="match-card card">
+                <div class="card-body text-center p-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-center">
+                            <img src="imagenes/Alaves.svg" class="img-fluid team-logo-card ms-4" alt="Man City">
+                            <h6 class="mt-1 fs-6 ms-4">Alavés</h6>
+                            <p class="fw-bold mb-0 fs-5 ms-4">1</p>
+                        </div>
+                        <div class="mx-2">
+                            <p class="mb-0 fw-bold fs-6">VS</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="imagenes/Sevilla_Fútbol_Club_logo.svg.png" class="img-fluid team-logo-card me-4" alt="Liverpool">
+                            <h6 class="mt-1 fs-6 me-4">Sevilla</h6>
+                            <p class="fw-bold mb-0 fs-5 me-4">2</p>
+                        </div>
+                    </div>
+                    <p class="text-muted mt-0 small">Finalizado</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-3">
+            <div class="match-card card">
+                <div class="card-body text-center p-2">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="text-center">
+                            <img src="imagenes/villarreal.png" class="img-fluid team-logo-card ms-4" alt="Atletico Madrid">
+                            <h6 class="mt-1 fs-6 ms-4">Villareal</h6>
+                            <p class="fw-bold mb-0 fs-5 ms-4">2</p>
+                        </div>
+                        <div class="mx-2">
+                            <p class="mb-0 fw-bold fs-6">VS</p>
+                        </div>
+                        <div class="text-center">
+                            <img src="imagenes/Ca_osasuna.png" class="img-fluid team-logo-card me-4" alt="Sevilla">
+                            <h6 class="mt-1 fs-6 me-4">Osasuna</h6>
+                            <p class="fw-bold mb-0 fs-5 me-4">1</p>
+                        </div>
+                    </div>
+                    <p class="text-muted mt-0 small">Finalizado</p>
+                </div>
+            </div>
+        </div>
+         <div class="d-flex justify-content-end mt-2 mb-2">
+  <button class="btn btn-outline-danger">Ver más partidos</button>
+</div>
+
+    </div>
+
+    <div class="container my-4">
+            <div class="text-center mb-1">
+                <img src="imagenes/caliente-anuncio1.png" 
+                    alt="Ad Banner" class="img-fluid rounded shadow-sm fut-anunciosmaller">
+            </div>
+        </div>
+        
+        <!-- Latest News Section -->
+        <h2 class="my-4 fw-bold">Latest News</h2>
+        <div class="row">
+            <!-- Main News Article -->
+            <div class="col-lg-8">
+                <div class="card news-card mb-4">
+                    <div class="position-relative">
+                        <img src="imagenes/fut-anuncio1.png" class="card-img-top fut-anuncio1" alt="Main News">
+                        <div class="category-badge">Football</div>
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">Real Madrid Wins El Clásico in Dramatic Fashion</h3>
+                        <p class="card-text">Real Madrid secured a crucial victory against Barcelona with a stunning performance from their star players. The match ended 3-1 with goals from Benzema, Vinicius, and Rodrygo.</p>
+                        <a href="#" class="read-more">Read more</a>
+                        <p class="card-text mt-2"><small class="text-muted">2 hours ago</small></p>
+                    </div>
+                </div>
+
+                <div class="container my-4">
+            <div class="text-center mb-4">
+                <img src="imagenes/caliente-anuncio1.png" 
+                    alt="Ad Banner" class="img-fluid rounded shadow-sm anuncio1">
+            </div>
+        </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card news-card">
+                            <div class="position-relative">
+                                <img src="imagenes/fut-anuncio1.png" class="card-img-top fut-anuncio2" alt="News">
+                                <div class="category-badge">Transfers</div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Mbappé to Real Madrid: Deal Almost Done</h5>
+                                <p class="card-text">The French star is reportedly close to signing with the Spanish giants after lengthy negotiations.</p>
+                                <a href="#" class="read-more">Read more</a>
+                                <p class="card-text mt-2"><small class="text-muted">5 hours ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card news-card">
+                            <div class="position-relative">
+                                <img src="imagenes/fut-anuncio1.png" class="card-img-top fut-anuncio2" alt="News">
+                                <div class="category-badge">Injuries</div>
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Barcelona's Key Player Out for Season</h5>
+                                <p class="card-text">A devastating injury during training has ruled out one of Barcelona's most important players.</p>
+                                <a href="#" class="read-more">Read more</a>
+                                <p class="card-text mt-2"><small class="text-muted">7 hours ago</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sidebar News -->
+            <div class="col-lg-4">
+                <div class="card news-card">
+                    <div class="card-header bg-danger text-white">
+                        <h5 class="mb-0">Trending Now</h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Champions League Draw Results</h6>
+                                <small class="text-muted">3 hours ago</small>
+                            </div>
+                            <small class="text-muted">Quarterfinal matchups revealed</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">New NBA Season Records</h6>
+                                <small class="text-muted">5 hours ago</small>
+                            </div>
+                            <small class="text-muted">Several players approaching historic milestones</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Formula 1 Championship Battle</h6>
+                                <small class="text-muted">8 hours ago</small>
+                            </div>
+                            <small class="text-muted">Top drivers separated by just 5 points</small>
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">Tennis Grand Slam Announcement</h6>
+                                <small class="text-muted">10 hours ago</small>
+                            </div>
+                            <small class="text-muted">Major changes coming to next year's tournament</small>
+                        </a>
+                    </div>
+                </div>
+                <div class="card news-card mt-4">
+                    <div class="card-header bg-secondary text-white">
+                         <h6 class="mb-0">Publicidad</h6>
+                    </div>
+                     <div class="card-body text-center">
+                     <img src="imagenes/caliente-anuncio2.png" 
+                      alt="Sidebar Ad" class="rounded anuncio2">
+                    </div>
+                </div>
+                
+                <div class="card news-card mt-4">
+                    <div class="card-header bg-danger text-white">
+                        <h5 class="mb-0">Upcoming Matches</h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex justify-content-between">
+                                <span>Real Madrid vs Bayern</span>
+                                <small class="text-muted">Tomorrow, 20:00</small>
+                            </div>
+                        </a>
+                    </div> 
+                </div> 
+            </div>  
+        </div>
+    </div>                           
+    <!-- Footer -->
+<footer class="mt-5">
+  <div class="container">
+    <!-- Sección de links principales -->
+    <div class="row text-center text-md-start mb-4">
+      <h5 class="fw-bold text-center mb-3">Otras webs de SportNews</h5>
+      <div class="col-md-3 mb-3">
+        <h6 class="fw-bold">Resultados deportivos</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="footer-link">Clasificación LIGA</a></li>
+          <li><a href="#" class="footer-link">Calendario LIGA</a></li>
+          <li><a href="#" class="footer-link">Champions</a></li>
+          <li><a href="#" class="footer-link">Europa League</a></li>
+          <li><a href="#" class="footer-link">Mundial</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h6 class="fw-bold">Información deportiva</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="footer-link">LaLiga EA Sports</a></li>
+          <li><a href="#" class="footer-link">Liga F</a></li>
+          <li><a href="#" class="footer-link">Fórmula 1</a></li>
+          <li><a href="#" class="footer-link">MotoGP</a></li>
+          <li><a href="#" class="footer-link">NBA</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h6 class="fw-bold">Ocio y entretenimiento</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="footer-link">Gaming</a></li>
+          <li><a href="#" class="footer-link">Loterías</a></li>
+          <li><a href="#" class="footer-link">Tiramillas</a></li>
+          <li><a href="#" class="footer-link">Salud</a></li>
+          <li><a href="#" class="footer-link">Bienestar</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-3">
+        <h6 class="fw-bold">SportNews</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="footer-link">Quiénes somos</a></li>
+          <li><a href="#" class="footer-link">Nuestro equipo</a></li>
+          <li><a href="#" class="footer-link">Publicidad</a></li>
+          <li><a href="#" class="footer-link">Contacto</a></li>
+          <li><a href="#" class="footer-link">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="border-light">
+
+    <!-- Legal + redes -->
+    <div class="text-center">
+      <p class="mb-2 small">
+        © SportNews 2025. Todos los derechos reservados.
+      </p>
+      <div class="d-flex justify-content-center mb-3">
+        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="social-icon"><i class="bi bi-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>                  
+</html>              
