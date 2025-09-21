@@ -229,6 +229,21 @@
             object-fit: cover;
         }
 
+        .news-card-big img {
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .news-card-big {
+            border: none;
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+
+        .news-card-big:hover {
+            transform: translateY(-5px);
+        }
+
         .team-logo-nav {
             width: 35px;
             height: 35px;
@@ -425,7 +440,7 @@ footer .social-icon:hover {
     <hr class="border-light">
       
       <ul class="navbar-nav me-auto">
-        <img id="marcaLogoscroll" src="imagenes/Marcalogoletter.png" alt="SportNews Logo" class="d-none d-lg-block" style="height: 40px; margin-right: 10px; padding-left: 10px; padding-right: 10px;">
+        <img id="marcaLogoscroll" src="imagenes/Marcalogoletter(1).png" alt="SportNews Logo" class="d-none d-lg-block" style="height: 40px; padding-left: 10px;">
         
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="futbolDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -654,16 +669,15 @@ footer .social-icon:hover {
         <div class="row">
             <!-- Main News Article -->
             <div class="col-lg-8">
-                <div class="card news-card mb-4">
+                <div class="card news-card-big mb-4 bg-dark">
                     <div class="position-relative">
-                        <img src="imagenes/fut-anuncio1.png" class="card-img-top fut-anuncio1 img-fluid w-100" alt="Main News">
-                        <div class="category-badge">Football</div>
+                        <img src="imagenes/anunciobig.png" class="card-img-top fut-anuncio1 img-fluid w-100" alt="Main News">
+                        <div class="category-badge">LaLiga EA Sports</div>
                     </div>
                     <div class="card-body">
-                        <h3 class="card-title">Real Madrid Wins El Clásico in Dramatic Fashion</h3>
-                        <p class="card-text">Real Madrid secured a crucial victory against Barcelona with a stunning performance from their star players. The match ended 3-1 with goals from Benzema, Vinicius, and Rodrygo.</p>
-                        <a href="#" class="read-more">Read more</a>
-                        <p class="card-text mt-2"><small class="text-muted">2 hours ago</small></p>
+                        <h3 class="card-title fw-bold text-white">Ya se juega en el Cruyff</h3>
+                        <p class="card-text fw-bold text-warning">Barcelona 0-0 Getafe</p>
+                        <a href="#" class="read-more">Narración en vivo</a>
                     </div>
                 </div>
 
